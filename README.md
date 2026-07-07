@@ -28,10 +28,11 @@ No arquivo `index.html` procure por `SEUNUMERO`, `SEUINSTA` e as tags
 | Endereço | seção **Localização** |
 | Mapa | trocar o `src` do `<iframe>` pelo endereço real |
 
-## Logo
-Coloque o arquivo do logo em **`assets/logo.png`**.
-Enquanto o arquivo não estiver lá, o site mostra automaticamente uma versão
-em texto do nome como reserva. É só adicionar o `logo.png` que ele aparece.
+## Logo e fundo
+- Logo: `assets/logo.png` (fundo já deixado transparente)
+- Padrão de fundo: `assets/fundo.png`
+
+Pra trocar qualquer um, basta substituir o arquivo mantendo o mesmo nome.
 
 ## Música
 A música já está em `assets/musica.mp3`. Por regra dos navegadores, ela não
