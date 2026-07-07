@@ -1,0 +1,369 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini Paredão do Léo</title>
+<meta name="description" content="Mini Paredão do Léo — som, potência e as melhores lives. Fique ligado!" />
+<meta name="theme-color" content="#0a0a0a" />
+
+<!-- ====== Open Graph / compartilhamento ====== -->
+<meta property="og:title" content="Mini Paredão do Léo" />
+<meta property="og:description" content="Som, potência e as melhores lives. Fique ligado!" />
+<meta property="og:image" content="assets/logo.png" />
+<meta property="og:type" content="website" />
+
+<style>
+  :root {
+    --preto: #0a0a0a;
+    --preto2: #141414;
+    --vermelho: #e50914;
+    --vermelho-escuro: #b00610;
+    --vermelho-claro: #ff3b3b;
+    --branco: #ffffff;
+    --cinza: #cccccc;
+    --sombra-vermelha: 0 0 18px rgba(229, 9, 20, 0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(229, 9, 20, 0.20), transparent 60%),
+      linear-gradient(180deg, #000 0%, #0a0a0a 40%, #120306 100%);
+    color: var(--branco);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ====== Barra promocional que passa (marquee) ====== */
+  .marquee {
+    background: var(--vermelho);
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 8px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 12px rgba(229, 9, 20, 0.5);
+  }
+  .marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: rola 16s linear infinite;
+  }
+  @keyframes rola {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+  }
+
+  /* ====== Logo ====== */
+  .logo-box {
+    text-align: center;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+  .logo-box img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(229, 9, 20, 0.45));
+    animation: flutua 4s ease-in-out infinite;
+  }
+  /* Reserva caso o logo ainda não tenha sido colocado */
+  .logo-fallback {
+    display: none;
+    font-weight: 900;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 24px 12px;
+  }
+  .logo-fallback .mini { color: var(--vermelho); font-size: 28px; }
+  .logo-fallback .paredao { color: #fff; font-size: 48px; text-shadow: 3px 3px 0 #000; }
+  .logo-fallback .leo { color: var(--vermelho); font-size: 40px; }
+  @keyframes flutua {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ====== Player de música ====== */
+  .player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin: 18px 0 8px;
+    box-shadow: var(--sombra-vermelha);
+  }
+  .play-btn {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    border-radius: 50%;
+    border: none;
+    background: var(--vermelho);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.25);
+    transition: transform 0.15s ease, background 0.2s ease;
+  }
+  .play-btn:hover { transform: scale(1.08); background: var(--vermelho-claro); }
+  .play-info { text-align: left; flex: 1; }
+  .play-info .titulo { font-weight: 800; font-size: 15px; }
+  .play-info .sub { font-size: 12px; color: var(--cinza); }
+
+  /* Equalizador animado */
+  .eq { display: flex; align-items: flex-end; gap: 3px; height: 26px; }
+  .eq span {
+    width: 4px;
+    background: var(--vermelho);
+    border-radius: 2px;
+    height: 6px;
+  }
+  .eq.tocando span { animation: pula 0.9s ease-in-out infinite; }
+  .eq span:nth-child(2) { animation-delay: 0.15s; }
+  .eq span:nth-child(3) { animation-delay: 0.30s; }
+  .eq span:nth-child(4) { animation-delay: 0.45s; }
+  .eq span:nth-child(5) { animation-delay: 0.60s; }
+  @keyframes pula {
+    0%, 100% { height: 6px; }
+    50% { height: 26px; }
+  }
+
+  /* ====== Botões / links ====== */
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(145deg, #1c1c1c, #0e0e0e);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid var(--vermelho);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-vermelha);
+    border-color: var(--vermelho);
+  }
+  .btn .ico {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    background: var(--vermelho);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .btn .txt small {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--cinza);
+  }
+
+  /* ====== Títulos de seção ====== */
+  .secao-titulo {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--vermelho-claro);
+    margin: 30px 0 10px;
+    position: relative;
+  }
+  .secao-titulo::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--vermelho);
+    margin: 8px auto 0;
+    border-radius: 2px;
+  }
+
+  /* ====== Cartão de info (horário, endereço) ====== */
+  .card {
+    background: linear-gradient(145deg, #161616, #0c0c0c);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 18px;
+    margin: 12px 0;
+    text-align: center;
+  }
+  .card h3 { font-size: 15px; margin-bottom: 6px; color: var(--vermelho-claro); }
+  .card p { font-size: 14px; color: var(--cinza); line-height: 1.6; }
+
+  .mapa iframe {
+    width: 100%;
+    height: 200px;
+    border: 0;
+    border-radius: 12px;
+    filter: grayscale(0.2) contrast(1.1);
+  }
+
+  /* ====== Aviso de campos a preencher ====== */
+  .placeholder-tag {
+    display: inline-block;
+    background: rgba(229, 9, 20, 0.15);
+    color: var(--vermelho-claro);
+    border: 1px dashed var(--vermelho);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ====== Rodapé ====== */
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 12px;
+    color: #888;
+  }
+  footer a { color: var(--vermelho-claro); text-decoration: none; font-weight: 700; }
+</style>
+
+<!-- ====== Barra que passa ====== -->
+<div class="marquee">
+  <span>🔊 Fique ligado nas próximas lives &nbsp;•&nbsp; Mini Paredão do Léo &nbsp;•&nbsp; Som e potência &nbsp;•&nbsp; 🔊 Fique ligado nas próximas lives &nbsp;•&nbsp; Mini Paredão do Léo</span>
+</div>
+
+<div class="container">
+
+  <!-- ====== Logo ====== -->
+  <div class="logo-box">
+    <img src="assets/logo.png" alt="Mini Paredão do Léo"
+         onerror="this.style.display='none';document.getElementById('logoFb').style.display='block';" />
+    <div id="logoFb" class="logo-fallback">
+      <div class="mini">Mini</div>
+      <div class="paredao">Paredão</div>
+      <div class="leo">do Léo</div>
+    </div>
+  </div>
+
+  <!-- ====== Player de música ====== -->
+  <div class="player">
+    <button class="play-btn" id="playBtn" aria-label="Tocar música">▶</button>
+    <div class="play-info">
+      <div class="titulo">Som do Paredão</div>
+      <div class="sub">Toque para ouvir 🔊</div>
+    </div>
+    <div class="eq" id="eq">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <audio id="audio" src="assets/musica.mp3" loop preload="metadata"></audio>
+
+  <!-- ====== Contato / Grupos ====== -->
+  <div class="secao-titulo">Contato & Grupos</div>
+
+  <a class="btn" href="https://wa.me/55SEUNUMERO" target="_blank" rel="noopener">
+    <span class="ico">💬</span>
+    <span class="txt">WhatsApp <span class="placeholder-tag">preencher nº</span>
+      <small>Fale direto com o Léo</small>
+    </span>
+  </a>
+
+  <a class="btn" href="#" target="_blank" rel="noopener">
+    <span class="ico">👥</span>
+    <span class="txt">Grupo do WhatsApp <span class="placeholder-tag">link</span>
+      <small>Entre e receba as novidades</small>
+    </span>
+  </a>
+
+  <a class="btn" href="https://instagram.com/SEUINSTA" target="_blank" rel="noopener">
+    <span class="ico">📸</span>
+    <span class="txt">Instagram <span class="placeholder-tag">@usuário</span>
+      <small>Siga e acompanhe as lives</small>
+    </span>
+  </a>
+
+  <!-- ====== Horário ====== -->
+  <div class="secao-titulo">Funcionamento</div>
+  <div class="card">
+    <h3>⏰ Horário de atendimento</h3>
+    <p>Segunda a Sábado <span class="placeholder-tag">preencher</span><br />das 00h às 00h</p>
+  </div>
+
+  <!-- ====== Localização ====== -->
+  <div class="secao-titulo">Localização</div>
+  <div class="card">
+    <h3>📍 Onde nos encontrar</h3>
+    <p>Endereço <span class="placeholder-tag">preencher</span></p>
+    <div class="mapa" style="margin-top:12px;">
+      <!-- Substituir o src pelo mapa do endereço real -->
+      <iframe
+        title="Mapa"
+        loading="lazy"
+        src="https://www.google.com/maps?q=Brasil&output=embed"></iframe>
+    </div>
+  </div>
+
+  <!-- ====== Rodapé ====== -->
+  <footer>
+    <p>© <span id="ano"></span> Mini Paredão do Léo — Todos os direitos reservados</p>
+    <p style="margin-top:8px;">Mini-site criado por <a href="#">Elizandra Straub</a></p>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("ano").textContent = new Date().getFullYear();
+
+  const audio = document.getElementById("audio");
+  const btn = document.getElementById("playBtn");
+  const eq = document.getElementById("eq");
+
+  btn.addEventListener("click", function () {
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = "⏸";
+      eq.classList.add("tocando");
+    } else {
+      audio.pause();
+      btn.textContent = "▶";
+      eq.classList.remove("tocando");
+    }
+  });
+
+  audio.addEventListener("ended", function () {
+    btn.textContent = "▶";
+    eq.classList.remove("tocando");
+  });
+</script>
