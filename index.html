@@ -192,6 +192,47 @@
     color: var(--cinza);
   }
 
+  /* ====== Serviços ====== */
+  .servico {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: linear-gradient(145deg, #161616, #0c0c0c);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 4px solid var(--vermelho);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 12px 0;
+  }
+  .servico-ico {
+    font-size: 26px;
+    line-height: 1;
+    min-width: 34px;
+    text-align: center;
+  }
+  .servico h4 { font-size: 16px; color: #fff; margin-bottom: 4px; }
+  .servico p { font-size: 13px; color: var(--cinza); line-height: 1.5; }
+
+  /* ====== Pacotes ====== */
+  .pacotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .pacote {
+    background: linear-gradient(160deg, #1e0507, #0d0d0d);
+    border: 1px solid var(--vermelho);
+    border-radius: 14px;
+    padding: 16px 8px;
+    text-align: center;
+  }
+  .pacote-ico { font-size: 20px; margin-bottom: 8px; }
+  .pacote strong { display: block; color: #fff; font-size: 13px; margin-bottom: 6px; }
+  .pacote span { display: block; color: var(--cinza); font-size: 11px; line-height: 1.4; }
+  @media (max-width: 380px) {
+    .pacotes { grid-template-columns: 1fr; }
+  }
+
   /* ====== Títulos de seção ====== */
   .secao-titulo {
     text-align: center;
@@ -349,6 +390,61 @@
       🎤 Chamar pro meu evento
     </a>
   </div>
+
+  <!-- ====== Serviços ====== -->
+  <div class="secao-titulo">Nossos Serviços</div>
+
+  <div class="servico">
+    <span class="servico-ico">🔊</span>
+    <div>
+      <h4>Som / Paredão</h4>
+      <p>Levamos o carrinho pra tocar no seu evento. Você escolhe a sua
+        playlist ou a gente monta pra você.</p>
+    </div>
+  </div>
+
+  <div class="servico">
+    <span class="servico-ico">💡</span>
+    <div>
+      <h4>Iluminação</h4>
+      <p>Máquina de fumaça, luzes de LED e strobe pra deixar a festa completa.</p>
+    </div>
+  </div>
+
+  <div class="servico">
+    <span class="servico-ico">🎧</span>
+    <div>
+      <h4>DJ</h4>
+      <p>Precisa de DJ? A gente também leva o DJ pro seu evento.</p>
+    </div>
+  </div>
+
+  <!-- ====== Pacotes ====== -->
+  <div class="secao-titulo">Pacotes</div>
+  <div class="pacotes">
+    <div class="pacote">
+      <div class="pacote-ico">🔊</div>
+      <strong>Só o Som</strong>
+      <span>O paredão tocando a sua playlist</span>
+    </div>
+    <div class="pacote">
+      <div class="pacote-ico">🔊💡</div>
+      <strong>Som + Iluminação</strong>
+      <span>Som com fumaça, LED e strobe</span>
+    </div>
+    <div class="pacote">
+      <div class="pacote-ico">🔊💡🎧</div>
+      <strong>Completo</strong>
+      <span>Som, iluminação e DJ na festa</span>
+    </div>
+  </div>
+  <p style="text-align:center; color:var(--cinza); font-size:13px; margin-top:10px;">
+    Monte o pacote do seu jeito — chama no WhatsApp e a gente combina! 🔥
+  </p>
+  <a class="btn-cta" style="display:block; max-width:280px; margin:16px auto 0;"
+     href="https://wa.me/5541996303108" target="_blank" rel="noopener">
+    💬 Pedir orçamento
+  </a>
 
   <!-- ====== Rodapé ====== -->
   <footer>
