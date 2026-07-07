@@ -28,12 +28,29 @@
 
   body {
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background:
-      radial-gradient(1200px 600px at 50% -10%, rgba(229, 9, 20, 0.20), transparent 60%),
-      linear-gradient(180deg, #000 0%, #0a0a0a 40%, #120306 100%);
+    background: #000;
     color: var(--branco);
     min-height: 100vh;
     overflow-x: hidden;
+  }
+  /* Padrão de fundo fixo (preto e vermelho: raios, alto-falantes, notas) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: #000 url("assets/fundo.svg") center center / cover no-repeat;
+    background-attachment: fixed;
+  }
+  /* Escurecido por cima do padrão pra manter tudo legível */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(900px 600px at 50% 20%, rgba(0,0,0,0.35), rgba(0,0,0,0.72) 70%),
+      linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.7));
   }
 
   /* ====== Barra promocional que passa (marquee) ====== */
